@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="NewsComparison App for Thinkful's API Capstone Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News Comparison API Capstone</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <section class="initial-container">
+        <header role="banner">
+            <h1 id="title">Bias Checker</h1>
+            <h3>Search by desired topic and compare news articles from sources representing a variety of ideological biases.</h3>
+        </header> 
+        <form class="search-button" >
+            <input type="text" id="search-news">
+            <input type="submit" value="search">
+        </form>
+    </section>
+    <main role="main">
+        <section class="newsapi hidden">
+            
+        </section>
+        <section class="youtubeapi hidden">
+
+        </section>
+    </main>
+    <footer role="content-info">
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
