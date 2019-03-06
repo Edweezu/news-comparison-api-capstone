@@ -71,7 +71,7 @@ function getNews(query) {
         })
         .then(responseJson => displayResults(responseJson))
         .catch(err => {
-            alert(`Error message: ${err.message}`)
+            $('.error-message').text(`Error: ${err.message}`)
         })
     } 
 }
@@ -91,6 +91,9 @@ function displayResults(responseJson) {
             </li>
         `)
     }
+
+    $('.newsapi').removeClass('hidden')
+
 }
 
 
