@@ -12,9 +12,12 @@
 
 const sourceArray = ['the-new-york-times', 'abc-news', 'the-wall-street-journal', 'usa-today', 'fox-news', 'breitbart-news'];
 
-const apiKey = '86b856af98974f2e98d7934417bf165e';
+const newsApiKey = '86b856af98974f2e98d7934417bf165e';
+const youtubeApiKey = 'AIzaSyBPTJbMptjE_RRXTGxcf4GWIQdo4h_EWEg';
 
-const searchUrl = 'https://newsapi.org/v2/everything';
+const newsSearchUrl = 'https://newsapi.org/v2/everything';
+const youtubeSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
+
 
 $(function () {
     console.log('App working. Ready to serve you, developer.')
@@ -28,8 +31,38 @@ function watchForm() {
         let userInput = $('#search-news').val();
         console.log('userInputtttt', userInput);
         getNews(userInput);
+        getYoutubeVids(userInput);
     })
 }
+
+function getYoutubeVids(query) {
+
+    let params = {
+
+    }
+
+    let queryString = formatString(params)
+    let url = newsSearchUrl + '?' + queryString;
+    console.log('final news url', url)
+
+    fetch(url)
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error(response.statustext);
+    })
+    .then(responseJson => displayYoutubeResults(responseJson))
+    .catch(err => $('.error-message').text(`Error: ${err.message}`))
+}
+
+
+function displayYoutubeResults(responseJson) {
+    console.log(responseJson)
+}
+
+
+
 
 function formatString(params) {
     let result = [];
@@ -39,7 +72,7 @@ function formatString(params) {
     return result.join('&')
 }
 
-
+//external API call to NewsAPI
 function getNews(query) {
 
     for (let i = 0 ; i < sourceArray.length ; i++) {
@@ -47,18 +80,18 @@ function getNews(query) {
             q: query,
             sources: `${sourceArray[i]}`,
             lang: "en",
-            sortBy: "relevancy"
-            // pageSize: ,
+            sortBy: "relevancy",
+            pageSize: 5
             // page: ,
         };
 
         let queryString = formatString(params)
-        let url = searchUrl + '?' + queryString;
-        console.log('final url', url)
+        let url = newsSearchUrl + '?' + queryString;
+        console.log('final news url', url)
 
         let options = {
             headers: new Headers ({
-                'X-Api-Key': apiKey
+                'X-Api-Key': newsApiKey
             })
         }
         
@@ -69,14 +102,15 @@ function getNews(query) {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayResults(responseJson))
+        .then(responseJson => displayNewsResults(responseJson))
         .catch(err => {
             $('.error-message').text(`Error: ${err.message}`)
         })
     } 
 }
 
-function displayResults(responseJson) {
+//displays NewsAPI results for each source onto DOM
+function displayNewsResults(responseJson) {
     console.log(responseJson);
     $(`#${responseJson.articles[0].source.id}`).empty();
     //responseJson.articles[0].urlToImage
@@ -93,7 +127,7 @@ function displayResults(responseJson) {
     }
 
     $('.newsapi').removeClass('hidden')
-
 }
+
 
 
