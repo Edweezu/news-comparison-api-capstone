@@ -38,11 +38,17 @@ function watchForm() {
 function getYoutubeVids(query) {
 
     let params = {
-
+        key: youtubeApiKey,
+        q: query,
+        part: 'snippet',
+        type: 'video',
+        order: 'Relevance',
+        relevanceLanguage: 'en',
+        safeSearch: 'moderate'
     }
 
     let queryString = formatString(params)
-    let url = newsSearchUrl + '?' + queryString;
+    let url = youtubeSearchUrl + '?' + queryString;
     console.log('final news url', url)
 
     fetch(url)
@@ -59,9 +65,26 @@ function getYoutubeVids(query) {
 
 function displayYoutubeResults(responseJson) {
     console.log(responseJson)
+    $('#youtube-list').empty();
+    if (responseJson.items.length === 0) {
+        $('#youtube-list').append(`Sorry, No Youtube Videos were found with that term. Please check for correct spelling, spacing, and punctuation.`)
+    } else {
+        for (let i = 0 ; i < responseJson.items.length ; i++)
+            let title = responseJson.items[i].snippet.title
+            let description = responseJson.items[i].snippet.description
+            if (title.length || description.length > 60) {
+                title = title.substring(0, 70).trim() + "...";
+                description = desription.substring(0, 70).trim() + "...";
+            }
+        $('#youtube-list').append(`
+            <li>
+                <h4>${title}</h4>
+                <a href="${responseJson.items[i].snippet.thumbnails.default}">
+                <p>${description}></p>
+
+            </li>
+        `) 
 }
-
-
 
 
 function formatString(params) {
@@ -103,31 +126,33 @@ function getNews(query) {
             throw new Error(response.statusText);
         })
         .then(responseJson => displayNewsResults(responseJson))
-        .catch(err => {
-            $('.error-message').text(`Error: ${err.message}`)
-        })
+        .catch(err => console.log(err.message))
     } 
 }
 
 //displays NewsAPI results for each source onto DOM
 function displayNewsResults(responseJson) {
     console.log(responseJson);
-    $(`#${responseJson.articles[0].source.id}`).empty();
+
+    $('.articles').empty();
     //responseJson.articles[0].urlToImage
+    if (responseJson.articles.length === 0) {
+        $('.articles').append(`Sorry, No News Articles were found with that term. Please check for correct spelling, spacing, and punctuation.`)
+    } else {
+        $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
 
-    $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
-
-    for (let i = 0 ; i < responseJson.articles.length; i++) {
-        $(`#${responseJson.articles[0].source.id}`).append(`
+        for (let i = 0 ; i < responseJson.articles.length; i++) {
+            $(`#${responseJson.articles[0].source.id}`).append(`
             <li class="article-list">
                 <h4><a href="${responseJson.articles[i].url}" target="_blank">${responseJson.articles[i].title}</a></h4>
                 <p>${responseJson.articles[i].description}</p>
             </li>
         `)
+        }  
     }
-
     $('.newsapi').removeClass('hidden')
 }
+    
 
 
 
