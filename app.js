@@ -124,7 +124,7 @@ function formatString(params) {
 //external API call to NewsAPI
 function getNews(query) {
     let appended = false;
-
+    console.log('newsArrayyyyyy', newsArray)
     for (let i = 0 ; i < newsArray.length ; i++) {
         let params = {
             q: query,
@@ -162,6 +162,7 @@ function getNews(query) {
                 $('.no-news-container').removeClass('hidden');
                 $('.articles').empty();
                 $('.source-container').addClass('hidden');
+                newsArray = [];
             } 
             displayNewsResults(responseJson)
         })
