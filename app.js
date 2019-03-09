@@ -18,6 +18,8 @@ const youtubeApiKey = 'AIzaSyBPTJbMptjE_RRXTGxcf4GWIQdo4h_EWEg';
 const newsSearchUrl = 'https://newsapi.org/v2/everything';
 const youtubeSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
 
+let newsArray = [];
+
 
 $(function () {
     console.log('App working. Ready to serve you, developer.');
@@ -29,7 +31,14 @@ function watchForm() {
     $('form.search-button').on('submit', function (e) {
         e.preventDefault();
         let userInput = $('#search-news').val();
+        let leftInput = $('select#left-input').find(":selected").val();
+        let rightInput = $('select#right-input').find(":selected").val();
+        let centerInput = $('select#center-input').find(":selected").val();
+        console.log('leftInputtttt', leftInput)
+        console.log('rightInputtttt', rightInput)
+        console.log('centerInputtttt', centerInput)
         console.log('userInputtttt', userInput);
+        newsArray.push(leftInput, rightInput, centerInput)
         getNews(userInput);
         getYoutubeVids(userInput);
     })
@@ -81,7 +90,7 @@ function displayYoutubeResults(responseJson) {
         
             $('#youtube-list').append(`
                 <li>
-                    <h4><a href="https://youtube.com/embed/${responseJson.items[i].id.videoId}">${showTitle}</a></h4>
+                    <h4><a href="https://youtube.com/embed/${responseJson.items[i].id.videoId}" target="_blank">${showTitle}</a></h4>
                     <img src="${responseJson.items[i].snippet.thumbnails.default.url}">
                     <p>${showDescription}></p>
                     
@@ -104,13 +113,13 @@ function formatString(params) {
 //external API call to NewsAPI
 function getNews(query) {
 
-    for (let i = 0 ; i < sourceArray.length ; i++) {
+    for (let i = 0 ; i < newsArray.length ; i++) {
         let params = {
             q: query,
-            sources: `${sourceArray[i]}`,
+            sources: `${newsArray[i]}`,
             lang: "en",
             sortBy: "relevancy",
-            // pageSize: 30
+            pageSize: 8
             // page: ,
         };
 
@@ -138,14 +147,16 @@ function getNews(query) {
 
 //displays NewsAPI results for each source onto DOM
 function displayNewsResults(responseJson) {
-    console.log(responseJson);
+    console.log('hi', responseJson.articles);
+    console.log('lengthhh', responseJson.articles.length)
 
-    $(`#${responseJson.articles[0].source.id}`).empty();
+    
     // $('.articles').empty();
     //responseJson.articles[0].urlToImage
-    if (responseJson.articles.length === 0) {
+    if (responseJson.articles.length == 0) {
         $('.articles').append(`Sorry, No News Articles were found with that term. Please check for correct spelling, spacing, and punctuation.`)
     } else {
+        $(`#${responseJson.articles[0].source.id}`).empty();
         $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
         
         for (let i = 0 ; i < responseJson.articles.length; i++) {
@@ -155,7 +166,11 @@ function displayNewsResults(responseJson) {
                 <p>${responseJson.articles[i].description}</p>
             </li>
         `)
-        }  
+        }
+
+        $(`#${responseJson.articles[0].source.id}`).parent().removeClass('hidden')
+        $('.newsapi').removeClass('hidden')
+         
     }
-    $('.newsapi').removeClass('hidden')
+    newsArray = []; 
 }   

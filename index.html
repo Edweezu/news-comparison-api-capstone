@@ -15,6 +15,35 @@
             <h3>Search by desired topic and compare news articles from sources representing a variety of ideological biases.</h3>
         </header> 
         <form class="search-button" >
+            <div class="article-selection-container">
+                <div class="article-selection">
+                    <label>Left Leaning Article</label>
+                    <select id="left-input">
+                        <option value="the-new-york-times" selected>New York Times
+                        </option>
+                        <option value="abc-news">ABC News
+                        </option>
+                    </select>
+                </div>
+                <div class="article-selection">
+                    <label>Relatively Neutral Article</label>
+                    <select id="center-input">
+                        <option value="the-wall-street-journal" selected>Wall Street Journal
+                        </option>
+                        <option value="usa-today">USA Today
+                        </option>
+                    </select>
+                </div>
+                <div class="article-selection">
+                    <label>Right Leaning Article</label>
+                    <select id="right-input">
+                        <option value="fox-news" selected>Fox News
+                        </option>
+                        <option value="breitbart-news">Breitbart News
+                        </option>
+                    </select>
+                </div>
+            </div>
             <input type="text" id="search-news">
             <input type="submit" value="search">
         </form>
@@ -22,37 +51,37 @@
     <main role="main">
         <p class="error-message"></p>
         <section class="newsapi hidden">
-            <div class="source-container" >
+            <div class="source-container hidden" >
                 <h4>The New York Times</h4>
                 <ul class="articles" id="the-new-york-times">
 
                 </ul>
             </div>
-            <div class="source-container">
+            <div class="source-container hidden">
                     <h4>ABC News</h4>
                     <ul class="articles" id="abc-news">
 
                     </ul>   
             </div>
-            <div class="source-container">
+            <div class="source-container hidden">
                     <h4>The Wall Street Journal</h4>
                     <ul class="articles" id="the-wall-street-journal">
 
                     </ul>       
             </div>
-            <div class="source-container">
+            <div class="source-container hidden">
                     <h4>USA Today</h4>
                     <ul class="articles" id="usa-today">
 
                     </ul>
             </div>
-            <div class="source-container">
+            <div class="source-container hidden">
                     <h4>Fox News</h4>
                     <ul class="articles" id="fox-news">
 
                     </ul>
             </div>
-            <div class="source-container">
+            <div class="source-container hidden">
                     <h4>Brietbart News</h4>
                     <ul class="articles" id="breitbart-news">
 
