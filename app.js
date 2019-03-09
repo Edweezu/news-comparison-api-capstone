@@ -39,6 +39,17 @@ function watchForm() {
         console.log('centerInputtttt', centerInput)
         console.log('userInputtttt', userInput);
         newsArray.push(leftInput, rightInput, centerInput)
+
+        for (let i = 0 ; i < sourceArray.length ; i++) {
+            for (let j = 0 ; j < newsArray.length ; j++) {
+                if (!newsArray.includes(sourceArray[i])) {
+                    $(`#${sourceArray[i]}`).parent().addClass('hidden');
+                }
+            }
+        }
+
+        $('.no-news-container').empty();
+        $('.articles').empty();
         getNews(userInput);
         getYoutubeVids(userInput);
     })
@@ -112,6 +123,7 @@ function formatString(params) {
 
 //external API call to NewsAPI
 function getNews(query) {
+    let appended = false;
 
     for (let i = 0 ; i < newsArray.length ; i++) {
         let params = {
@@ -140,22 +152,33 @@ function getNews(query) {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayNewsResults(responseJson))
+        .then(responseJson => {
+            if (responseJson.articles.length === 0 && appended === false) {
+                $('.no-news-container').append(`
+                <h4>News API</h4>
+                <ul>Sorry, No News Articles were found with that term. Please check for correct spelling, spacing, and punctuation.</ul>
+                `)
+                appended = true;
+                $('.no-news-container').removeClass('hidden');
+                $('.articles').empty();
+                $('.source-container').addClass('hidden');
+            } 
+            displayNewsResults(responseJson)
+        })
         .catch(err => console.log(err.message))
     } 
+
+
+
 }
 
 //displays NewsAPI results for each source onto DOM
 function displayNewsResults(responseJson) {
-    console.log('hi', responseJson.articles);
+    console.log('hi', responseJson);
     console.log('lengthhh', responseJson.articles.length)
-
     
     // $('.articles').empty();
     //responseJson.articles[0].urlToImage
-    if (responseJson.articles.length == 0) {
-        $('.articles').append(`Sorry, No News Articles were found with that term. Please check for correct spelling, spacing, and punctuation.`)
-    } else {
         $(`#${responseJson.articles[0].source.id}`).empty();
         $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
         
@@ -170,7 +193,6 @@ function displayNewsResults(responseJson) {
 
         $(`#${responseJson.articles[0].source.id}`).parent().removeClass('hidden')
         $('.newsapi').removeClass('hidden')
-         
-    }
-    newsArray = []; 
-}   
+        $('.no-news-container').addClass('hidden'); 
+        newsArray = [];
+}
