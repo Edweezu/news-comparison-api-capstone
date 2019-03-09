@@ -20,7 +20,7 @@ const youtubeSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
 
 
 $(function () {
-    console.log('App working. Ready to serve you, developer.')
+    console.log('App working. Ready to serve you, developer.');
     watchForm();
 })
 
@@ -47,9 +47,9 @@ function getYoutubeVids(query) {
         safeSearch: 'moderate'
     }
 
-    let queryString = formatString(params)
+    let queryString = formatString(params);
     let url = youtubeSearchUrl + '?' + queryString;
-    console.log('final news url', url)
+    console.log('final news url', url);
 
     fetch(url)
     .then(response => {
@@ -69,21 +69,27 @@ function displayYoutubeResults(responseJson) {
     if (responseJson.items.length === 0) {
         $('#youtube-list').append(`Sorry, No Youtube Videos were found with that term. Please check for correct spelling, spacing, and punctuation.`)
     } else {
-        for (let i = 0 ; i < responseJson.items.length ; i++)
-            let title = responseJson.items[i].snippet.title
-            let description = responseJson.items[i].snippet.description
-            if (title.length || description.length > 60) {
-                title = title.substring(0, 70).trim() + "...";
-                description = desription.substring(0, 70).trim() + "...";
-            }
-        $('#youtube-list').append(`
-            <li>
-                <h4>${title}</h4>
-                <a href="${responseJson.items[i].snippet.thumbnails.default}">
-                <p>${description}></p>
+        let showTitle = '';
+        let showDescription = '';
+        for (let i = 0 ; i < responseJson.items.length ; i++) {
+            showTitle = responseJson.items[i].snippet.title;
+            showDescription = responseJson.items[i].snippet.description;
 
-            </li>
-        `) 
+            // if (responseJson.items[i].snippet.description.length > 70) {
+            //     showDescription = showDescription.substring(0, 70).trim() + "...";
+            // }
+        
+            $('#youtube-list').append(`
+                <li>
+                    <h4><a href="https://youtube.com/embed/${responseJson.items[i].id.videoId}">${showTitle}</a></h4>
+                    <img src="${responseJson.items[i].snippet.thumbnails.default.url}">
+                    <p>${showDescription}></p>
+                    
+                </li>
+            `);
+        }
+    }
+    $('.youtubeapi').removeClass('hidden')
 }
 
 
@@ -104,7 +110,7 @@ function getNews(query) {
             sources: `${sourceArray[i]}`,
             lang: "en",
             sortBy: "relevancy",
-            pageSize: 5
+            // pageSize: 30
             // page: ,
         };
 
@@ -134,13 +140,14 @@ function getNews(query) {
 function displayNewsResults(responseJson) {
     console.log(responseJson);
 
-    $('.articles').empty();
+    $(`#${responseJson.articles[0].source.id}`).empty();
+    // $('.articles').empty();
     //responseJson.articles[0].urlToImage
     if (responseJson.articles.length === 0) {
         $('.articles').append(`Sorry, No News Articles were found with that term. Please check for correct spelling, spacing, and punctuation.`)
     } else {
         $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
-
+        
         for (let i = 0 ; i < responseJson.articles.length; i++) {
             $(`#${responseJson.articles[0].source.id}`).append(`
             <li class="article-list">
@@ -151,8 +158,4 @@ function displayNewsResults(responseJson) {
         }  
     }
     $('.newsapi').removeClass('hidden')
-}
-    
-
-
-
+}   
