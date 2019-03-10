@@ -13,7 +13,7 @@
 const sourceArray = ['the-new-york-times', 'abc-news', 'the-wall-street-journal', 'usa-today', 'fox-news', 'breitbart-news'];
 
 const newsApiKey = '86b856af98974f2e98d7934417bf165e';
-const youtubeApiKey = 'AIzaSyBPTJbMptjE_RRXTGxcf4GWIQdo4h_EWEg';
+const youtubeApiKey = 'AIzaSyA9Ln2n2KJAwTHSQtsCbTdKudR0hbBL7I8';
 
 const newsSearchUrl = 'https://newsapi.org/v2/everything';
 const youtubeSearchUrl = 'https://www.googleapis.com/youtube/v3/search';
