@@ -8,6 +8,7 @@
 //     fox-news
 //     breitbart-news
 
+
 'use strict'
 
 const sourceArray = ['the-new-york-times', 'abc-news', 'the-wall-street-journal', 'usa-today', 'fox-news', 'breitbart-news'];
@@ -100,7 +101,7 @@ function displayYoutubeResults(responseJson) {
             // }
         
             $('#youtube-list').append(`
-                <li>
+                <li class="article-list">
                     <h4><a href="https://youtube.com/embed/${responseJson.items[i].id.videoId}" target="_blank">${showTitle}</a></h4>
                     <img src="${responseJson.items[i].snippet.thumbnails.default.url}">
                     <p>${showDescription}></p>
@@ -155,7 +156,7 @@ function getNews(query) {
         .then(responseJson => {
             if (responseJson.articles.length === 0 && appended === false) {
                 $('.no-news-container').append(`
-                <h4>News API</h4>
+                <h2>News API</h2>
                 <ul>Sorry, No News Articles were found with that term. Please check for correct spelling, spacing, and punctuation.</ul>
                 `)
                 appended = true;
@@ -181,12 +182,13 @@ function displayNewsResults(responseJson) {
     // $('.articles').empty();
     //responseJson.articles[0].urlToImage
         $(`#${responseJson.articles[0].source.id}`).empty();
-        $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
+        // $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
         
         for (let i = 0 ; i < responseJson.articles.length; i++) {
             $(`#${responseJson.articles[0].source.id}`).append(`
             <li class="article-list">
                 <h4><a href="${responseJson.articles[i].url}" target="_blank">${responseJson.articles[i].title}</a></h4>
+                <img class="article-image" src="${responseJson.articles[i].urlToImage}" alt="video's image">
                 <p>${responseJson.articles[i].description}</p>
             </li>
         `)

@@ -58,10 +58,14 @@ a:hover {
     width: 100%;
 }
 
-.newsapi, .youtubeapi {
+.newsapi, .youtubeapi, .no-news-container, .error-message {
     padding: 1rem;
     margin: 0 auto;
     width: 100%;
+}
+
+.newsapi {
+    padding-top: 0px;
 }
 
 .article-selection {
@@ -80,9 +84,32 @@ input {
     margin-top: 4rem;
 }
 
+.article-list img {
+    float: right;
+    display: block;
+    max-width: 45%;
+    margin: 0.5rem;
+}
+
+.article-list {
+    overflow: auto;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 0.5rem;
+}
+
+.article-list:last-of-type {
+    border-bottom: none;
+}
+
+li {
+    text-align: left;
+}
+
+ul {
+    padding-inline-start: 0px;
+}
 
 
-/* put newsapi article image with each article */
 
 /* media query notes
 as page increases, make input box bigger 
