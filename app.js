@@ -80,7 +80,7 @@ function getYoutubeVids(query) {
         throw new Error(response.statustext);
     })
     .then(responseJson => displayYoutubeResults(responseJson))
-    .catch(err => $('.error-message').text(`Error: ${err.message}`))
+    .catch(err => console.log(err.message))
 }
 
 

@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News Comparison API Capstone</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Arimo|EB+Garamond|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+    <nav role="navigation">
+        <ul>
+            <li>
+                <a href="index.html"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+                <a href="political-spectrum.html"><i class="fas fa-info-circle"></i>Info</a>
+            </li>
+        </ul>
+    </nav>
     <section class="initial-container">
         <header role="banner">
             <h1 id="title">Bias Checker</h1>
@@ -51,8 +62,6 @@
         </form>
     </section>
     <main role="main">
-        <section class="error-message">
-        </section>
         <section class="no-news-container hidden">
         </section>
         <section class="newsapi hidden">
@@ -104,18 +113,29 @@
     </main>
     <footer role="content-info">
         <ul>
-            <li>
-                <p>2019 Edwin Qiu</p>
+            <li class="copyright">
+                <p><i class="fas fa-copyright"></i>2019 Edwin Qiu</p>
             </li>
-            <li>
-                <a href="mailto:edwinqiu93@gmail.com" title="Send Edwin an email">Email</a>
+            <li class="contact-item mail">
+                    <a href="mailto:edwinqiu93@gmail.com?subject=Hi" target="_blank" aria-label="Email Edwin Qiu">
+                        <i class="far fa-envelope" title="Email"></i>
+                    </a>
             </li>
-            <li>
-                <a href="https://www.linkedin.com/in/edwinqiu/"></a>
+            <li class="contact-item">
+                <a href="https://www.linkedin.com/in/edwinqiu/" target="_blank" aria-label="Edwin Qiu's Linkedin Profile">
+                    <i class="fab fa-linkedin" title="Linkedin"></i>
+                </a>
             </li>
-            <li>
-                <a href="https://github.com/Edweezu">Github</a>
-            </li>  
+            <li class="contact-item">
+                <a href="https://github.com/Edweezu" target="_blank" aria-label="Edwin Qiu's Github Profile">
+                    <i class="fab fa-github" title="Github"></i>
+                </a>
+            </li>
+            <li class="copyright">
+                <p>
+                    Powered by NewsAPI and YoutubeAPI.
+                </p>
+            </li>
         </ul>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
