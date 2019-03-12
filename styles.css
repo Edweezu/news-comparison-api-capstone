@@ -12,3 +12,82 @@
     display: block;
 } */
 
+ul {
+    list-style: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+    font-family: "EB Garamond", serif;
+}
+
+h2 {
+    border-bottom: 2px solid blue;
+}
+
+p {
+    font-family: "Arimo", sans-serif;
+    font-size: 0.8rem;
+}
+
+a {
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+a:hover {
+    color: #02bdd5;
+}
+
+.initial-container {
+    padding: 1rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.newsapi, .youtubeapi {
+    padding: 1rem;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.article-selection {
+    margin-bottom: 0.5rem;
+}
+
+select {
+    margin-left: 0.5rem;
+}
+
+input {
+    margin: 0.5rem;
+}
+
+.source-container {
+    margin-top: 4rem;
+}
+
+
+
+/* put newsapi article image with each article */
+
+/* media query notes
+as page increases, make input box bigger 
+
+
+
+
+*/

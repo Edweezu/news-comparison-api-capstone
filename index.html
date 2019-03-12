@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>News Comparison API Capstone</title>
+    <link href="https://fonts.googleapis.com/css?family=Arimo|EB+Garamond|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -17,7 +19,7 @@
         <form class="search-button" >
             <div class="article-selection-container">
                 <div class="article-selection">
-                    <label>Left Leaning Article</label>
+                    <label>Left Leaning Source</label>
                     <select id="left-input">
                         <option value="the-new-york-times" selected>New York Times
                         </option>
@@ -26,7 +28,7 @@
                     </select>
                 </div>
                 <div class="article-selection">
-                    <label>Relatively Neutral Article</label>
+                    <label>Relatively Neutral Source</label>
                     <select id="center-input">
                         <option value="the-wall-street-journal" selected>Wall Street Journal
                         </option>
@@ -35,7 +37,7 @@
                     </select>
                 </div>
                 <div class="article-selection">
-                    <label>Right Leaning Article</label>
+                    <label>Right Leaning Source</label>
                     <select id="right-input">
                         <option value="fox-news" selected>Fox News
                         </option>
@@ -44,7 +46,7 @@
                     </select>
                 </div>
             </div>
-            <input type="text" id="search-news">
+            <input type="text" id="search-news" required>
             <input type="submit" value="search">
         </form>
     </section>
@@ -53,44 +55,44 @@
         <p class="no-news-container hidden"></p>
         <section class="newsapi hidden">
             <div class="source-container hidden" >
-                <h4>The New York Times</h4>
+                <h2>The New York Times</h2>
                 <ul class="articles" id="the-new-york-times">
 
                 </ul>
             </div>
             <div class="source-container hidden">
-                    <h4>ABC News</h4>
+                    <h2>ABC News</h2>
                     <ul class="articles" id="abc-news">
 
                     </ul>   
             </div>
             <div class="source-container hidden">
-                    <h4>The Wall Street Journal</h4>
+                    <h2>The Wall Street Journal</h2>
                     <ul class="articles" id="the-wall-street-journal">
 
                     </ul>       
             </div>
             <div class="source-container hidden">
-                    <h4>USA Today</h4>
+                    <h2>USA Today</h2>
                     <ul class="articles" id="usa-today">
 
                     </ul>
             </div>
             <div class="source-container hidden">
-                    <h4>Fox News</h4>
+                    <h2>Fox News</h2>
                     <ul class="articles" id="fox-news">
 
                     </ul>
             </div>
             <div class="source-container hidden">
-                    <h4>Brietbart News</h4>
+                    <h2>Brietbart News</h2>
                     <ul class="articles" id="breitbart-news">
 
                     </ul>
             </div>
         </section>
         <section class="youtubeapi hidden">
-            <h4>Youtube</h4>
+            <h2>Youtube</h2>
             <div class="youtube-container">
                 <ul id="youtube-list">
 
