@@ -11,7 +11,7 @@
 
 'use strict'
 
-const sourceArray = ['the-new-york-times', 'abc-news', 'the-wall-street-journal', 'usa-today', 'fox-news', 'breitbart-news'];
+const sourceArray = ['the-new-york-times', 'abc-news', 'the-wall-street-journal', 'usa-today', 'fox-news', 'breitbart-news', 'cnn', 'bbc-news', 'daily-mail'];
 
 const newsApiKey = '86b856af98974f2e98d7934417bf165e';
 const youtubeApiKey = 'AIzaSyA9Ln2n2KJAwTHSQtsCbTdKudR0hbBL7I8';
@@ -65,7 +65,8 @@ function getYoutubeVids(query) {
         type: 'video',
         order: 'Relevance',
         relevanceLanguage: 'en',
-        safeSearch: 'moderate'
+        safeSearch: 'moderate',
+        maxResults: 8
     }
 
     let queryString = formatString(params);

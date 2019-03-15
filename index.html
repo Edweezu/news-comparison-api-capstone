@@ -22,45 +22,53 @@
             </li>
         </ul>
     </nav>
-    <section class="initial-container">
-        <header role="banner">
-            <h1 id="title">Bias Checker</h1>
+    <!-- <section class="initial-container"> -->
+        <header role="banner" class="header-image">
+                <h1 id="title">Bias Checker</h1>     
+        </header>
+        <div class="descript-container">
             <h3>Search by desired topic and compare news articles from sources representing a variety of ideological biases.</h3>
-        </header> 
-        <form class="search-button" >
-            <div class="article-selection-container">
-                <div class="article-selection">
-                    <label>Left Leaning Source</label>
-                    <select id="left-input">
-                        <option value="the-new-york-times" selected>New York Times
-                        </option>
-                        <option value="abc-news">ABC News
-                        </option>
-                    </select>
+            <form class="search-button" >
+                <div class="article-selection-container">
+                    <div class="article-selection">
+                        <label>Left Leaning Source</label>
+                        <select id="left-input">
+                            <option value="the-new-york-times" selected>New York Times
+                            </option>
+                            <option value="abc-news">ABC News
+                            </option>
+                            <option value="cnn">CNN
+                            </option>
+                        </select>
+                    </div>
+                    <div class="article-selection">
+                        <label>Relatively Neutral Source</label>
+                        <select id="center-input">
+                            <option value="the-wall-street-journal" selected>Wall Street Journal
+                            </option>
+                            <option value="usa-today">USA Today
+                            </option>
+                            <option value="bbc-news">BBC News
+                            </option>
+                        </select>
+                    </div>
+                    <div class="article-selection">
+                        <label>Right Leaning Source</label>
+                        <select id="right-input">
+                            <option value="fox-news" selected>Fox News
+                            </option>
+                            <option value="breitbart-news">Breitbart News
+                            </option>
+                            <option value="daily-mail">Daily Mail
+                            </option>
+                        </select>
+                    </div>
                 </div>
-                <div class="article-selection">
-                    <label>Relatively Neutral Source</label>
-                    <select id="center-input">
-                        <option value="the-wall-street-journal" selected>Wall Street Journal
-                        </option>
-                        <option value="usa-today">USA Today
-                        </option>
-                    </select>
-                </div>
-                <div class="article-selection">
-                    <label>Right Leaning Source</label>
-                    <select id="right-input">
-                        <option value="fox-news" selected>Fox News
-                        </option>
-                        <option value="breitbart-news">Breitbart News
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <input type="text" id="search-news" required>
-            <input type="submit" value="search">
-        </form>
-    </section>
+                <input type="text" id="search-news" required>
+                <input type="submit" value="search">
+            </form>
+        </div>
+    <!-- </section> -->
     <main role="main">
         <section class="no-news-container hidden">
         </section>
@@ -100,6 +108,24 @@
                     <ul class="articles" id="breitbart-news">
 
                     </ul>
+            </div>
+            <div class="source-container hidden">
+                <h2>CNN</h2>
+                <ul class="articles" id="cnn">
+
+                </ul>
+            </div>
+            <div class="source-container hidden">
+                <h2>BBC News</h2>
+                <ul class="articles" id="bbc-news">
+
+                </ul>
+            </div>
+            <div class="source-container hidden">
+                <h2>Daily Mail</h2>
+                <ul class="articles" id="daily-mail">
+
+                </ul>
             </div>
         </section>
         <section class="youtubeapi hidden">
