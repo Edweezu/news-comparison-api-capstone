@@ -322,3 +322,9 @@ h1 {
     }
 
 }
+
+@media only screen and (min-width: 1100px) {
+    .article-selection {
+        font-size: 1.7rem;
+    }
+}
