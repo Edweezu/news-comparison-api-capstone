@@ -1,14 +1,3 @@
-// L
-//     the-new-york-times
-//     abc-news
-// C
-//     the-wall-street-journal
-//     usa-today
-// R
-//     fox-news
-//     breitbart-news
-
-
 'use strict'
 
 const sourceArray = ['the-new-york-times', 'abc-news', 'the-wall-street-journal', 'usa-today', 'fox-news', 'breitbart-news', 'cnn', 'bbc-news', 'daily-mail'];
@@ -25,7 +14,20 @@ let newsArray = [];
 $(function () {
     console.log('App working. Ready to serve you, developer.');
     watchForm();
+    searchButton();
 })
+
+
+function searchButton () {
+    $('#nav-search').on('click', function (e) {
+        e.preventDefault();
+        let liText = $(this).text();
+        console.log(liText)
+        $('html, body').animate({
+            scrollTop: $('.article-selection-container').offset().top - 58
+        })
+    })
+}
 
 
 function watchForm() {
@@ -96,10 +98,6 @@ function displayYoutubeResults(responseJson) {
         for (let i = 0 ; i < responseJson.items.length ; i++) {
             showTitle = responseJson.items[i].snippet.title;
             showDescription = responseJson.items[i].snippet.description;
-
-            // if (responseJson.items[i].snippet.description.length > 70) {
-            //     showDescription = showDescription.substring(0, 70).trim() + "...";
-            // }
         
             $('#youtube-list').append(`
                 <li class="article-list">
@@ -134,7 +132,6 @@ function getNews(query) {
             lang: "en",
             sortBy: "relevancy",
             pageSize: 8
-            // page: ,
         };
 
         let queryString = formatString(params)
@@ -180,23 +177,20 @@ function displayNewsResults(responseJson) {
     console.log('hi', responseJson);
     console.log('lengthhh', responseJson.articles.length)
     
-    // $('.articles').empty();
-    //responseJson.articles[0].urlToImage
-        $(`#${responseJson.articles[0].source.id}`).empty();
-        // $(`#${responseJson.articles[0].source.id}`).append(`<img class="article-image" src="${responseJson.articles[0].urlToImage}" alt="first article's image">`)
-        
-        for (let i = 0 ; i < responseJson.articles.length; i++) {
-            $(`#${responseJson.articles[0].source.id}`).append(`
-            <li class="article-list">
-                <h4><a href="${responseJson.articles[i].url}" target="_blank">${responseJson.articles[i].title}</a></h4>
-                <img class="article-image" src="${responseJson.articles[i].urlToImage}" alt="video's image">
-                <p>${responseJson.articles[i].description}</p>
-            </li>
-        `)
-        }
+    $(`#${responseJson.articles[0].source.id}`).empty();
 
-        $(`#${responseJson.articles[0].source.id}`).parent().removeClass('hidden')
-        $('.newsapi').removeClass('hidden')
-        $('.no-news-container').addClass('hidden'); 
-        newsArray = [];
+    for (let i = 0 ; i < responseJson.articles.length; i++) {
+        $(`#${responseJson.articles[0].source.id}`).append(`
+        <li class="article-list">
+            <h4><a href="${responseJson.articles[i].url}" target="_blank">${responseJson.articles[i].title}</a></h4>
+            <img class="article-image" src="${responseJson.articles[i].urlToImage}" alt="video's image">
+            <p>${responseJson.articles[i].description}</p>
+        </li>
+        `)
+    }
+
+    $(`#${responseJson.articles[0].source.id}`).parent().removeClass('hidden')
+    $('.newsapi').removeClass('hidden')
+    $('.no-news-container').addClass('hidden'); 
+    newsArray = [];
 }
