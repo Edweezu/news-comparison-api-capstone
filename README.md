@@ -1,7 +1,5 @@
 # Bias Checker
 
-A community driven, book recommendation application. Users can create lists of their favorite books and have others recommended to them.
-
 In today's age, where there is an insane amount of information and data at our fingertips, it's hard to decide what to read or believe. With Bias Checker, users can search for any topic that interests them and read articles written by both sides of the political spectrum. With that knowledge, they can then decide how best to interpret the information given to them.
 
 ## Demo
