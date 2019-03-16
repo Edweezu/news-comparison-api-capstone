@@ -28,7 +28,7 @@ Youtube Video Section:
 
 User Flows and WireFrame: 
 
-![wireframe](readme-images/user-flow-wireframe.png)
+![wireframe](readme-images/user-flow-wireframe.JPG)
 
 
 ## Technologies Used
