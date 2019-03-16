@@ -17,12 +17,12 @@ $(function () {
     searchButton();
 })
 
-
+//When user clicks the search button in the nav, scroll to the search input 
 function searchButton () {
     $('#nav-search').on('click', function (e) {
         e.preventDefault();
         let liText = $(this).text();
-        console.log(liText)
+        // console.log(liText)
         $('html, body').animate({
             scrollTop: $('.article-selection-container').offset().top - 58
         })
@@ -37,10 +37,10 @@ function watchForm() {
         let leftInput = $('select#left-input').find(":selected").val();
         let rightInput = $('select#right-input').find(":selected").val();
         let centerInput = $('select#center-input').find(":selected").val();
-        console.log('leftInputtttt', leftInput)
-        console.log('rightInputtttt', rightInput)
-        console.log('centerInputtttt', centerInput)
-        console.log('userInputtttt', userInput);
+        // console.log('leftInputtttt', leftInput)
+        // console.log('rightInputtttt', rightInput)
+        // console.log('centerInputtttt', centerInput)
+        // console.log('userInputtttt', userInput);
         newsArray.push(leftInput, rightInput, centerInput)
 
         for (let i = 0 ; i < sourceArray.length ; i++) {
@@ -58,8 +58,8 @@ function watchForm() {
     })
 }
 
+//Retrieves youtube videos from Youtube API & converts to JSON
 function getYoutubeVids(query) {
-
     let params = {
         key: youtubeApiKey,
         q: query,
@@ -73,7 +73,7 @@ function getYoutubeVids(query) {
 
     let queryString = formatString(params);
     let url = youtubeSearchUrl + '?' + queryString;
-    console.log('final news url', url);
+    // console.log('final news url', url);
 
     fetch(url)
     .then(response => {
@@ -86,9 +86,9 @@ function getYoutubeVids(query) {
     .catch(err => console.log(err.message))
 }
 
-
+//Displays youtube results to the DOM 
 function displayYoutubeResults(responseJson) {
-    console.log(responseJson)
+    // console.log(responseJson)
     $('#youtube-list').empty();
     if (responseJson.items.length === 0) {
         $('#youtube-list').append(`Sorry, No Youtube Videos were found with that term. Please check for correct spelling, spacing, and punctuation.`)
@@ -112,7 +112,7 @@ function displayYoutubeResults(responseJson) {
     $('.youtubeapi').removeClass('hidden')
 }
 
-
+//Formats parameters in order to successfully perform an API request 
 function formatString(params) {
     let result = [];
     for (let key in params) {
@@ -124,7 +124,7 @@ function formatString(params) {
 //external API call to NewsAPI
 function getNews(query) {
     let appended = false;
-    console.log('newsArrayyyyyy', newsArray)
+    // console.log('newsArrayyyyyy', newsArray)
     for (let i = 0 ; i < newsArray.length ; i++) {
         let params = {
             q: query,
@@ -167,9 +167,6 @@ function getNews(query) {
         })
         .catch(err => console.log(err.message))
     } 
-
-
-
 }
 
 //displays NewsAPI results for each source onto DOM
