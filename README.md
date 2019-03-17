@@ -4,7 +4,7 @@ In today's age, where there is an insane amount of information and data at our f
 
 ## Demo
 
-- Live Preview can be found at : https://edweezu.github.io/news-comparison-api-capstone/
+- Live Preview can be found at : https://edweezu.github.io/bias-checker-api-capstone/
 
 
 ## Screenshots
